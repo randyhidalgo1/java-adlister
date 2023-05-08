@@ -9,17 +9,6 @@ import java.io.PrintWriter;
 @WebServlet ("/welcome")
 public class WelcomeServlet extends HttpServlet{
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        Stringc car + req.getParameter("car");
-//        printWriter out = resp.getWriter();
-//        if (car !=null){
-//            out.println("<h3> Your " + car + " is awesome!</h3>"); {
-//                else {
-//                    out.println("<h3> Tell me about your car!</h3>");
-//                }
-//            }
-//    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username =req.getParameter("username");
@@ -28,3 +17,13 @@ public class WelcomeServlet extends HttpServlet{
         out.println("<h2>Welcome, " + username + "!</h2>");
     }
 }
+
+
+
+
+
+
+
+
+
+
