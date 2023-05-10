@@ -15,6 +15,7 @@ public class WelcomeServlet extends HttpServlet{
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.println("<h2>Welcome, " + username + "!</h2>");
+//        out.println("<h3>Your email: " + email + "</h3>");
     }
 }
 
