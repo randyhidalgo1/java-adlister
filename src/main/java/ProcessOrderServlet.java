@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name ="processOrderServlet", urlPatterns= "/pizzaOrder")
 public class ProcessOrderServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/pizzaOrder.jsp").forward(request, response);
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/pizzaOrder.jsp").forward(request, response);
         String crust = request.getParameter("crust");
