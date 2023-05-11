@@ -1,6 +1,11 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+
 public class BeanTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         Album album = new Album(1, "Taylor Swift", "Taylor Swift", 2006, 5000000, "Country");
         System.out.println(album);
         Album album1 = new Album(2, "Ed Sheeran", "Fearless", 2008, 10000000, "Pop");
@@ -20,5 +25,14 @@ public class BeanTest {
         Author author1 = new Author(2, "Marcus Aurelius");
         System.out.println(author1);
         Author author2 = new Author(3, "Socrates");
+
+        ArrayList<Quotes>quotes = new ArrayList<Quotes>();
+        quotes.add(quote);
+        quotes.add(quote1);
+        quotes.add(quote2);
+        for(Quotes Quotes: quotes)
+        System.out.println("Quote: " + quote.getContent() + " - Author: " + Author.name());
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(quotes));
     }
 }
