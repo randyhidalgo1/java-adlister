@@ -1,3 +1,8 @@
+package dao;
+
+import dao.Ads;
+import model.Ad;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +16,7 @@ public class ListAdsDao implements Ads {
         return ads;
     }
 
-    private List<Ad> generateAds() {
+    public List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(
             1,

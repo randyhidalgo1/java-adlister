@@ -1,3 +1,6 @@
+import dao.Ads;
+import dao.ListAdsDao;
+
 public class DaoFactory {
     private static Ads adsDao;
 
