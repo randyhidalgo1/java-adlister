@@ -1,7 +1,6 @@
 package controller;
-import dao.DaoFactory;
 
-import dao.ListAdsDao;
+import dao.DaoFactory;
 import model.Ad;
 
 import javax.servlet.ServletException;

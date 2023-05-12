@@ -18,13 +18,17 @@
 <body>
 <h1>All dao.Ads</h1>
 <ul class="ad">
-    <% List<Ad> ads = (List<Ad>) request.getAttribute("ads");
-        for (Ad ad : ads) { %>
+    <%
+        @SuppressWarnings("unchecked")
+        List<Ad> ads = (List<Ad>) request.getAttribute("ads");
+    if (ads!=null) {
+    for (Ad ad : ads) { %>
     <li>
         <h2><%= ad.getTitle() %></h2>
         <p><%= ad.getDescription() %></p>
     </li>
-    <% } %>
+    <% }
+    } %>
 </ul>
 </body>
 </html>

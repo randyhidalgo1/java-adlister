@@ -1,5 +1,4 @@
-import dao.Ads;
-import dao.ListAdsDao;
+package dao;
 
 public class DaoFactory {
     private static Ads adsDao;

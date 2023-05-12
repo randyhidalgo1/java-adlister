@@ -1,6 +1,5 @@
 package dao;
 
-import dao.Ads;
 import model.Ad;
 
 import java.util.ArrayList;
