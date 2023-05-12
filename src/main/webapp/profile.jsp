@@ -9,7 +9,8 @@
     <jsp:include page="partials/navbar.jsp" />
 
     <div class="container">
-        <h1>Viewing your profile.</h1>
+        <h1>Viewing your profile, ${username}</h1>
+        <button class="btn btn-primary" onclick="window.location.href='/login'">Log Out</button>
     </div>
 
 </body>
