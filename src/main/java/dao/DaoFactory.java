@@ -9,4 +9,8 @@ public class DaoFactory {
         }
         return adsDao;
     }
+
+    public static Ads getAuthorsDao() {
+        return null;
+    }
 }
