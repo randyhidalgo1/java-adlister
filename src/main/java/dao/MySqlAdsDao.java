@@ -1,17 +1,22 @@
 package dao;
 
 import model.Ad;
-
 import javax.servlet.jsp.jstl.core.Config;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
-import java.sql.*;
 
 
-public class MySQLAdsDao implements AdsDao {
+public class MySqlAdsDao implements AdsDao {
     private Connection connection;
 
-    public MySQLAdsDao(Connection connection) {
+    public MySqlAdsDao(Connection connection) {
         this.connection = connection;
+    }
+
+    public MySqlAdsDao() {
+
     }
 
     public Connection getConnection() {
@@ -22,7 +27,7 @@ public class MySQLAdsDao implements AdsDao {
         this.connection = connection;
     }
 
-    public MySQLAdsDao(Config config) {
+    public MySqlAdsDao(Config config) {
         try {
             this.connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/adlister_db?allowPublicKeyRetrieval=true&useSSL=false",

@@ -3,8 +3,8 @@ package dao;
 import javax.servlet.jsp.jstl.core.Config;
 
 public class DaoFactory {
-    public static MySQLAdsDao getAdsDao() {
-        return new MySQLAdsDao(new Config());
+    public static MySqlAdsDao getAdsDao() {
+        return new MySqlAdsDao(new Config());
     }
 }
 

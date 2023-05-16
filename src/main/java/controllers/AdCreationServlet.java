@@ -1,7 +1,7 @@
 package controllers;
 
 import dao.DaoFactory;
-import dao.MySQLAdsDao;
+import dao.MySqlAdsDao;
 import model.Ad;
 
 import javax.servlet.ServletException;
@@ -25,7 +25,7 @@ public class AdCreationServlet extends HttpServlet {
         int userId = 1;
 
         Ad ad = new Ad(userId, title, description);
-        MySQLAdsDao adsDao = DaoFactory.getAdsDao();
+        MySqlAdsDao adsDao = DaoFactory.getAdsDao();
         adsDao.insertAd(ad);
 
         response.sendRedirect("/ads");
