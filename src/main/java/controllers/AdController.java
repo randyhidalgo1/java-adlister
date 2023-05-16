@@ -12,7 +12,7 @@ public class AdController {
         Ad ad = new Ad(userId, "Ad Title", "Ad Description");
         Ads mySqlAdsDao = null;
         Ads adsDao = (Ads) new MySQLAdsDao(); // Instantiate the AdsDao implementation
-        adsDao.insertAd(ad);
+        adsDao.insert(ad);
     }
 
 }
