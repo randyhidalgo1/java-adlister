@@ -1,5 +1,5 @@
 package com.codeup.adlister.dao;
-
+// Should be a Users Interface not java?
 public class Users {
     private long id;
     private String username;

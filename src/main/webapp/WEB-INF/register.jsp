@@ -35,6 +35,17 @@
             </div>
         </form>
     </div>
+    <div class="container">
+        <form action="${pageContext.request.contextPath}/profile" method="post">
+            <div class="form-group">
+                <label for="username">UserName</label>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+            </div>
+
+        </form>
+    </div>
 </div>
 </body>
 </html>

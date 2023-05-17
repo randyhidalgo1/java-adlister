@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+// Maybe change to Ads from UserDao in DAO FActory
 public class DaoFactory {
     private static UsersDao usersDao;
     private static Config config = new Config();
