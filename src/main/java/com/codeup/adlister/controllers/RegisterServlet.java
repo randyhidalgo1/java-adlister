@@ -1,5 +1,8 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,14 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/register.jsp")
-            .forward(request, response);
-        // TODO: show the registration form
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -22,26 +23,21 @@ public class RegisterServlet extends HttpServlet {
 
         if(isValid(username, email, password)) {
             // Create a new user based on the submitted information
-            username newUser = new username (username, email, password);
-            // Add the user to your data store here
+            Long userId = DaoFactory.getUsersDao().insert(username, email, password);
+            User newUser = new User(username, email, password);
 
-            // If a user was successfully created, send them to their profile
-            response.sendRedirect("profile");
+            if (userId != null) {
+                response.sendRedirect("profile");
+            } else {
+                request.setAttribute("errorMessage", "An error occurred during registration. Please try again.");
+                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            }
         } else {
-            // If the user data was not valid, you could optionally redirect back to the registration form with an error message
             request.setAttribute("errorMessage", "Invalid data provided. Please try again.");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }
-
     private boolean isValid(String username, String email, String password) {
-        return username != null && !username.isEmpty() &&
-                email != null && !email.isEmpty() &&
-                password != null && !password.isEmpty();
+            return true;
     }
-
 }
-        // TODO: ensure the submitted information is valid
-        // TODO: create a new user based off of the submitted information
-        // TODO: if a user was successfully created, send them to their profile
-

@@ -1,21 +1,22 @@
 package com.codeup.adlister.dao;
 
-import javax.servlet.jsp.jstl.core.Config;
-
 public class DaoFactory {
-    private static Ads adsDao;
-    private static Users usersDao;
+    private static UsersDao usersDao;
     private static Config config = new Config();
 
-    public static void setAdsDao(Ads adsDao) {
-        DaoFactory.adsDao = adsDao;
-    }
-    public static Users getUsersDao() {
+    public static UsersDao getUsersDao() {
+        if (usersDao == null) {
+            usersDao = new MySQLUsersDao(config);
+        }
         return usersDao;
     }
 
-    public static void setUsersDao(Users usersDao) {
+    public static void setUsersDao(UsersDao usersDao) {
         DaoFactory.usersDao = usersDao;
+    }
+
+    public static void setUsersDao(Users usersDao) {
+        DaoFactory.usersDao = (UsersDao) usersDao;
     }
 
     public static Config getConfig() {
@@ -26,12 +27,11 @@ public class DaoFactory {
         DaoFactory.config = config;
     }
 
-    public static Ads getAdsDao() {
-        if (adsDao == null) {
-            adsDao = new MySQLAdsDao(config);
-        }
+    public static AdsDao getAdsDao() {
+        AdsDao adsDao = null;
+        adsDao = new MySQLAdsDao(config);
         return adsDao;
-
     }
+
 
 }

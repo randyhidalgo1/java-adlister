@@ -15,22 +15,27 @@
                 </c:forEach>
             </ul>
         </div>
-    </c:if>c:if>
-    <form action="${pageContext.request.contextPath}/WEB-INF/register.jsp" method="post">
-        <div class="form-group">
-            <label for="userName">Registration Form</label>
-            <input id="userName" name="userName" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <textarea id="email" name="email" class="form-control" type="text"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="password">Email</label>
-            <textarea id="password" name="password" class="form-control" type="text"></textarea>
-        </div>
-        <input type="submit" class="btn btn-block btn-primary">
-    </form>
+    </c:if>
+    <div class="container">
+        <form action="${pageContext.request.contextPath}/register" method="post">
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <input id="username" name="username" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" class="form-control" type="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" class="form-control" type="password">
+            </div>
+            <div>
+                <input type="submit" class="btn btn-block btn-primary">
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
+

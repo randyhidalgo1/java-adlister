@@ -1,8 +1,6 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.models.User;
-
-public abstract class Users{
+public class Users {
     private long id;
     private String username;
     private String email;
@@ -48,8 +46,4 @@ public abstract class Users{
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public abstract User findByUsername(String username);
-
-    public abstract Long insert(User user);
 }

@@ -3,12 +3,11 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import javax.servlet.jsp.jstl.core.Config;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao implements Ads {
+public class MySQLAdsDao implements AdsDao {
     private Connection connection = null;
 
     public MySQLAdsDao(Config config) {
@@ -16,7 +15,7 @@ public class MySQLAdsDao implements Ads {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                 config.getUrl(),
-                config.getUser(),
+                config.getUsername(),
                 config.getPassword()
             );
         } catch (SQLException e) {
@@ -24,25 +23,24 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
     @Override
     public List<Ad> all() {
         Statement stmt = null;
         try {
+            String query = "SELECT * FROM ads";
             stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) { /* ignored */ }
+            }
         }
-    }
+}
 
     @Override
     public Long insert(Ad ad) {
@@ -59,6 +57,21 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
+    }
+
+    @Override
+    public Ad findAdById(long id) {
+        return null;
+    }
+
+    @Override
+    public boolean updateAd(Ad ad) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteAd(long id) {
+        return false;
     }
 
 //    private String createInsertQuery(Ad ad) {
