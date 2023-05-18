@@ -3,20 +3,23 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao implements AdsDao {
+public class MySQLAdsDao implements Ads {
     private Connection connection = null;
 
     public MySQLAdsDao(Config config) {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -27,20 +30,13 @@ public class MySQLAdsDao implements AdsDao {
     public List<Ad> all() {
         Statement stmt = null;
         try {
-            String query = "SELECT * FROM ads";
             stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) { /* ignored */ }
-            }
         }
-}
+    }
 
     @Override
     public Long insert(Ad ad) {
@@ -59,22 +55,9 @@ public class MySQLAdsDao implements AdsDao {
         }
     }
 
-    @Override
-    public Ad findAdById(long id) {
-        return null;
-    }
-
-    @Override
-    public boolean updateAd(Ad ad) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteAd(long id) {
-        return false;
-    }
-
 //    private String createInsertQuery(Ad ad) {
+//        String query = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
+//
 //        return "INSERT INTO ads(user_id, title, description) VALUES "
 //            + "(" + ad.getUserId() + ", "
 //            + "'" + ad.getTitle() +"', "
